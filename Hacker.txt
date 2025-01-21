@@ -1,0 +1,81 @@
+document.body.style.backgroundColor = "#000";
+document.body.style.color = "#FFF";
+
+let mouseClones = [];
+document.body.addEventListener("mousemove", (e) => {
+    const clone = document.createElement("div");
+    clone.style.position = "absolute";
+    clone.style.width = "20px";
+    clone.style.height = "20px";
+    clone.style.backgroundColor = "#FFF";
+    clone.style.borderRadius = "50%";
+    clone.style.pointerEvents = "none";
+    clone.style.left = `${e.pageX}px`;
+    clone.style.top = `${e.pageY}px`;
+    document.body.appendChild(clone);
+    mouseClones.push(clone);
+
+    if (mouseClones.length > 100) {
+        document.body.removeChild(mouseClones.shift());
+    }
+});
+
+function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.style.position = "fixed";
+    confetti.style.width = "10px";
+    confetti.style.height = "10px";
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    confetti.style.left = `${Math.random() * window.innerWidth}px`;
+    confetti.style.top = `-${Math.random() * 20}px`;
+    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+    document.body.appendChild(confetti);
+    setTimeout(() => {
+        document.body.removeChild(confetti);
+    }, 5000);
+}
+
+function createRain() {
+    const rain = document.createElement("div");
+    rain.style.position = "fixed";
+    rain.style.width = "2px";
+    rain.style.height = "20px";
+    rain.style.backgroundColor = "blue";
+    rain.style.left = `${Math.random() * window.innerWidth}px`;
+    rain.style.top = `-${Math.random() * 20}px`;
+    rain.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+    document.body.appendChild(rain);
+    setTimeout(() => {
+        document.body.removeChild(rain);
+    }, 3000);
+}
+
+function createSnow() {
+    const snow = document.createElement("div");
+    snow.style.position = "fixed";
+    snow.style.width = "10px";
+    snow.style.height = "10px";
+    snow.style.backgroundColor = "white";
+    snow.style.borderRadius = "50%";
+    snow.style.left = `${Math.random() * window.innerWidth}px`;
+    snow.style.top = `-${Math.random() * 20}px`;
+    snow.style.animation = `fall ${Math.random() * 5 + 3}s linear infinite`;
+    document.body.appendChild(snow);
+    setTimeout(() => {
+        document.body.removeChild(snow);
+    }, 5000);
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+`;
+document.head.appendChild(style);
+
+setInterval(createConfetti, 200);
+setInterval(createRain, 100);
+setInterval(createSnow, 300);
