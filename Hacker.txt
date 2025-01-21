@@ -1,3 +1,73 @@
+// Cambiar colores del fondo y el texto de forma intermitente
+function randomColor() {
+    return `hsl(${Math.random() * 360}, 100%, 50%)`;
+}
+
+setInterval(() => {
+    document.body.style.backgroundColor = randomColor();
+    document.body.style.color = randomColor();
+}, 100);
+
+// Clonar el ratón hasta llenar la pantalla
+let mouseClones = [];
+document.body.addEventListener("mousemove", (e) => {
+    const clone = document.createElement("div");
+    clone.style.position = "absolute";
+    clone.style.width = "20px";
+    clone.style.height = "20px";
+    clone.style.backgroundColor = randomColor();
+    clone.style.borderRadius = "50%";
+    clone.style.pointerEvents = "none";
+    clone.style.left = `${e.pageX}px`;
+    clone.style.top = `${e.pageY}px`;
+    document.body.appendChild(clone);
+    mouseClones.push(clone);
+
+    if (mouseClones.length > 1000) {
+        document.body.removeChild(mouseClones.shift());
+    }
+});
+
+// Lluvia de emojis
+const emojis = ["🎉", "✨", "🎊", "🎈", "💥", "🔥"];
+function createEmojiRain() {
+    const emoji = document.createElement("div");
+    emoji.style.position = "fixed";
+    emoji.style.fontSize = "30px";
+    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.left = `${Math.random() * window.innerWidth}px`;
+    emoji.style.top = `-${Math.random() * 20}px`;
+    emoji.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+    document.body.appendChild(emoji);
+    setTimeout(() => {
+        document.body.removeChild(emoji);
+    }, 5000);
+}
+
+// Crear texto que baila
+const textNodes = document.body.querySelectorAll("*:not(script):not(style)");
+textNodes.forEach(node => {
+    node.style.animation = "bounce 1s infinite";
+});
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+`;
+document.head.appendChild(style);
+
+// Crear efectos
+setInterval(createEmojiRain, 200);
+
 function cambiarColores() {     const colores = ['red', 'green', 'blue', 'yellow', 'purple', 'orange'];     const elementos = document.querySelectorAll('*');     setInterval(() => {         elementos.forEach(elemento => {             const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];             elemento.style.backgroundColor = colorAleatorio;         });     }, 500);} cambiarColores();
  
 document.head.appendChild(style);
