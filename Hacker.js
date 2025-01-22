@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         The Web Changer
+// @name         TheWebChanger
 // @namespace    https://violentmonkey.github.io/
-// @version      0.2
+// @version      3.0
 // @description  Cambia la apariencia de las páginas web con muchas opciones divertidas
 // @author       TheSupremeHackerr
 // @match        *://*/*
