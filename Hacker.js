@@ -220,6 +220,4 @@
         }
     }
 
-    // Crear los botones con sus funciones
-    crearBoton('Colores', cambiarColores);
-    crearBoton('Confetti', lanzarConf[_{{{CITATION{{{_1{](https://github.com/KCVO1995/Mickey-Mouse/tree/c9a2e8545b19cb72ec1f0e0374fdeda1be30f18d/src%2Fmain.js)[_{{{CITATION{{{_2{](https://github.com/open-hubs/aframe-csdt-portals/tree/7d840ea85030267aa9ed66f907612f1ba0f4ae79/src%2Fcsdt-portal.js)[_{{{CITATION{{{_3{](https://github.com/diterevan/leadform/tree/a44bbcd5fd886077103e2e114397998c6e2a1d86/src%2Fleadform.js)
+    // Crear los botones con sus funciones[_{{{CITATION{{{_1{](https://github.com/KCVO1995/Mickey-Mouse/tree/c9a2e8545b19cb72ec1f0e0374fdeda1be30f18d/src%2Fmain.js)[_{{{CITATION{{{_2{](https://github.com/open-hubs/aframe-csdt-portals/tree/7d840ea85030267aa9ed66f907612f1ba0f4ae79/src%2Fcsdt-portal.js)[_{{{CITATION{{{_3{](https://github.com/diterevan/leadform/tree/a44bbcd5fd886077103e2e114397998c6e2a1d86/src%2Fleadform.js)
