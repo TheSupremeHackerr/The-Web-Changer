@@ -59,7 +59,7 @@
   buttonContainer.style.maxHeight = "calc(100vh - 120px)";
   buttonContainer.style.overflowY = "auto";
 
-  // Definir funciones reales
+  // Definir funciones (antiguas y nuevas)
   const funciones = [
     {
       es: "Cambiar color de fondo",
@@ -77,6 +77,7 @@
         confettiScript.onload = () => {
           confetti({ spread: 70, origin: { y: 0.6 } });
         };
+        confettiScript.onerror = () => alert("Error al cargar el script de confeti");
         document.body.appendChild(confettiScript);
       },
     },
@@ -109,12 +110,13 @@
         fireworkScript.onload = () => {
           confetti({ particleCount: 200, spread: 160 });
         };
+        fireworkScript.onerror = () => alert("Error al cargar el script de fuegos artificiales");
         document.body.appendChild(fireworkScript);
       },
     },
     {
-      es: "Rickroll",
-      en: "Rickroll",
+      es: "Click aquí",
+      en: "Click here",
       accion: () => {
         const rickrollIframe = document.createElement("iframe");
         rickrollIframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
@@ -126,7 +128,7 @@
         rickrollIframe.style.height = "80vh";
         rickrollIframe.style.border = "none";
         rickrollIframe.style.zIndex = "10000";
-        
+
         const closeButton = document.createElement("button");
         closeButton.textContent = "Cerrar Rickroll";
         closeButton.style.position = "fixed";
@@ -142,7 +144,7 @@
           rickrollIframe.remove();
           closeButton.remove();
         };
-        
+
         document.body.appendChild(rickrollIframe);
         document.body.appendChild(closeButton);
       },
@@ -165,293 +167,114 @@
         setTimeout(() => clearInterval(interval), 10000);
       },
     },
-const nuevasFunciones = [
-  {
-    es: "Juego: Adivina el número",
-    en: "Game: Guess the number",
-    accion: () => {
-      const number = Math.floor(Math.random() * 100) + 1;
-      const guess = prompt(idioma === "es" ? "Adivina el número entre 1 y 100" : "Guess the number between 1 and 100");
-      alert(guess == number ? (idioma === "es" ? "¡Correcto!" : "Correct!") : (idioma === "es" ? `Incorrecto, era ${number}` : `Incorrect, it was ${number}`));
-    },
-  },
-  {
-    es: "Mostrar reloj",
-    en: "Show clock",
-    accion: () => {
-      const clock = document.createElement("div");
-      clock.style.position = "fixed";
-      clock.style.bottom = "20px";
-      clock.style.right = "20px";
-      clock.style.fontSize = "24px";
-      clock.style.fontWeight = "bold";
-      clock.style.color = "white";
-      clock.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-      clock.style.padding = "10px";
-      clock.style.borderRadius = "5px";
-      clock.style.zIndex = "10000";
-
-      setInterval(() => {
-        const date = new Date();
-        clock.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-      }, 1000);
-
-      document.body.appendChild(clock);
-    },
-  },
-  {
-    es: "Efecto de lluvia",
-    en: "Rain effect",
-    accion: () => {
-      const rainScript = document.createElement("script");
-      rainScript.src = "https://cdn.jsdelivr.net/npm/rainyday.js";
-      rainScript.onload = () => {
-        const rainyday = new RainyDay();
-        rainyday.size(5).effect('rain', document.body);
-      };
-      document.body.appendChild(rainScript);
-    },
-  },
-  {
-    es: "Efecto de niebla",
-    en: "Fog effect",
-    accion: () => {
-      const fogScript = document.createElement("script");
-      fogScript.src = "https://cdn.jsdelivr.net/npm/foggy";
-      fogScript.onload = () => {
-        $('body').foggy({ blurRadius: 4, opacity: 0.6 });
-      };
-      document.body.appendChild(fogScript);
-    },
-  },
-  {
-    es: "Juego: Serpiente",
-    en: "Game: Snake",
-    accion: () => {
-      const snakeGame = document.createElement("iframe");
-      snakeGame.src = "https://www.google.com/search?q=snake+game";
-      snakeGame.style.position = "fixed";
-      snakeGame.style.top = "50%";
-      snakeGame.style.left = "50%";
-      snakeGame.style.transform = "translate(-50%, -50%)";
-      snakeGame.style.width = "80vw";
-      snakeGame.style.height = "80vh";
-      snakeGame.style.zIndex = "10000";
-      snakeGame.style.border = "none";
-      const closeButton = document.createElement("button");
-      closeButton.textContent = "Cerrar";
-      closeButton.style.position = "fixed";
-      closeButton.style.top = "10px";
-      closeButton.style.right = "10px";
-      closeButton.style.zIndex = "10001";
-      closeButton.style.padding = "10px";
-      closeButton.style.backgroundColor = "red";
-      closeButton.style.color = "white";
-      closeButton.style.border = "none";
-      closeButton.style.cursor = "pointer";
-      closeButton.onclick = () => {
-        snakeGame.remove();
-        closeButton.remove();
-      };
-      document.body.appendChild(snakeGame);
-      document.body.appendChild(closeButton);
-    },
-  },
-  {
-    es: "Generar código QR",
-    en: "Generate QR code",
-    accion: () => {
-      const url = prompt(idioma === "es" ? "Introduce la URL para generar un código QR" : "Enter the URL to generate a QR code");
-      const qrScript = document.createElement("script");
-      qrScript.src = "https://cdn.jsdelivr.net/npm/qrcode";
-      qrScript.onload = () => {
-        const qrContainer = document.createElement("div");
-        new QRCode(qrContainer, url);
-        qrContainer.style.position = "fixed";
-        qrContainer.style.top = "50%";
-        qrContainer.style.left = "50%";
-        qrContainer.style.transform = "translate(-50%, -50%)";
-        qrContainer.style.zIndex = "10000";
-        document.body.appendChild(qrContainer);
-      };
-      document.body.appendChild(qrScript);
-    },
-  },
-  {
-    es: "Generar imagen aleatoria",
-    en: "Generate random image",
-    accion: () => {
-      const img = document.createElement("img");
-      img.src = `https://source.unsplash.com/random/800x600`;
-      img.style.position = "fixed";
-      img.style.top = "50%";
-      img.style.left = "50%";
-      img.style.transform = "translate(-50%, -50%)";
-      img.style.zIndex = "10000";
-      img.style.border = "none";
-      const closeButton = document.createElement("button");
-      closeButton.textContent = "Cerrar";
-      closeButton.style.position = "fixed";
-      closeButton.style.top = "10px";
-      closeButton.style.right = "10px";
-      closeButton.style.zIndex = "10001";
-      closeButton.style.padding = "10px";
-      closeButton.style.backgroundColor = "red";
-      closeButton.style.color = "white";
-      closeButton.style.border = "none";
-      closeButton.style.cursor = "pointer";
-      closeButton.onclick = () => {
-        img.remove();
-        closeButton.remove();
-      };
-      document.body.appendChild(img);
-      document.body.appendChild(closeButton);
-    },
-  },
-  {
-    es: "Piano virtual",
-    en: "Virtual piano",
-    accion: () => {
-      const pianoIframe = document.createElement("iframe");
-      pianoIframe.src = "https://www.onlinepianist.com/virtual-piano";
-      pianoIframe.style.position = "fixed";
-      pianoIframe.style.top = "50%";
-      pianoIframe.style.left = "50%";
-      pianoIframe.style.transform = "translate(-50%, -50%)";
-      pianoIframe.style.width = "80vw";
-      pianoIframe.style.height = "80vh";
-      pianoIframe.style.zIndex = "10000";
-      pianoIframe.style.border = "none";
-      const closeButton = document.createElement("button");
-      closeButton.textContent = "Cerrar";
-      closeButton.style.position = "fixed";
-      closeButton.style.top = "10px";
-      closeButton.style.right = "10px";
-      closeButton.style.zIndex = "10001";
-      closeButton.style.padding = "10px";
-      closeButton.style.backgroundColor = "red";
-      closeButton.style.color = "white";
-      closeButton.style.border = "none";
-      closeButton.style.cursor = "pointer";
-      closeButton.onclick = () => {
-        pianoIframe.remove();
-        closeButton.remove();
-      };
-      document.body.appendChild(pianoIframe);
-      document.body.appendChild(closeButton);
-    },
-  },
-  {
-    es: "Reproducir música",
-    en: "Play music",
-    accion: () => {
-      const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-      audio.play();
-    },
-  },
-  {
-    es: "Efecto de luces intermitentes",
-    en: "Flashing lights effect",
-    accion: () => {
-      let flashInterval = setInterval(() => {
-        document.body.style.backgroundColor = document.body.style.backgroundColor === "white" ? "black" : "white";
-      }, 200);
-      setTimeout(() => clearInterval(flashInterval), 5000);
-    },
-  },
-  {
-    es: "Efecto de distorsión",
-    en: "Distortion effect",
-    accion: () => {
-      document.body.style.transform = "scale(1.2)";
-      document.body.style.transition = "all 0.5s";
-      setTimeout(() => {
-        document.body.style.transform = "scale(1)";
-      }, 500);
-    },
-  },
-  {
-    es: "Juego: Memoria",
-    en: "Game: Memory",
-    accion: () => {
-      alert(idioma === "es" ? "Próximamente..." : "Coming soon...");
-    },
-  },
-  {
-    es: "Juego: Tic Tac Toe",
-    en: "Game: Tic Tac Toe",
-    accion: () => {
-      alert(idioma === "es" ? "Próximamente..." : "Coming soon...");
-    },
-  },
-  {
-    es: "Generar un poema aleatorio",
-    en: "Generate random poem",
-    accion: () => {
-      alert(idioma === "es" ? "Próximamente..." : "Coming soon...");
-    },
-  },
-  {
-    es: "Cambiar imagen de fondo",
-    en: "Change background image",
-    accion: () => {
-      document.body.style.backgroundImage = `url('https://source.unsplash.com/random/1920x1080')`;
-      document.body.style.backgroundSize = "cover";
-    },
-  },
-  {
-    es: "Efecto de terremoto",
-    en: "Earthquake effect",
-    accion: () => {
-      const shake = document.createElement("style");
-      shake.innerHTML = `
-        @keyframes shake { 
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-10px); }
-          50% { transform: translateX(10px); }
-          75% { transform: translateX(-10px); }
-          100% { transform: translateX(0); }
-        }
-        body { animation: shake 0.5s linear infinite; }
-      `;
-      document.head.appendChild(shake);
-      setTimeout(() => document.head.removeChild(shake), 5000);
-    },
-  
-
     {
       es: "Juego: Dinosaurio de Google",
       en: "Game: Google Dinosaur",
       accion: () => {
-        const dinoGame = document.createElement("iframe");
+        let dinoGame = document.createElement("iframe");
         dinoGame.src = "https://chromedino.com/";
         dinoGame.style.position = "fixed";
         dinoGame.style.top = "50%";
         dinoGame.style.left = "50%";
         dinoGame.style.transform = "translate(-50%, -50%)";
-        dinoGame.style.width = "80vw";
-        dinoGame.style.height = "80vh";
+        dinoGame.style.width = "800px";
+        dinoGame.style.height = "400px";
         dinoGame.style.zIndex = "10000";
-        dinoGame.style.border = "none";
-        const closeButton = document.createElement("button");
-        closeButton.textContent = "Cerrar";
-        closeButton.style.position = "fixed";
-        closeButton.style.top = "10px";
-        closeButton.style.right = "10px";
-        closeButton.style.zIndex = "10001";
-        closeButton.style.padding = "10px";
-        closeButton.style.backgroundColor = "red";
-        closeButton.style.color = "white";
+        dinoGame.style.border = "2px solid #000";
+        dinoGame.style.borderRadius = "8px";
+        dinoGame.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
+        document.body.appendChild(dinoGame);
+
+        let closeButton = document.createElement("button");
+        closeButton.innerText = "Cerrar Juego";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "5px";
+        closeButton.style.right = "5px";
+        closeButton.style.backgroundColor = "#ff4d4d";
+        closeButton.style.color = "#fff";
         closeButton.style.border = "none";
+        closeButton.style.padding = "5px 10px";
+        closeButton.style.borderRadius = "5px";
         closeButton.style.cursor = "pointer";
         closeButton.onclick = () => {
           dinoGame.remove();
           closeButton.remove();
         };
-        document.body.appendChild(dinoGame);
         document.body.appendChild(closeButton);
       },
-    }
+    },
+
+    // Nuevas funciones
+    {
+      es: "Juego: Adivina el número",
+      en: "Game: Guess the number",
+      accion: () => {
+        const number = Math.floor(Math.random() * 100) + 1;
+        const guess = prompt(idioma === "es" ? "Adivina el número entre 1 y 100" : "Guess the number between 1 and 100");
+        alert(guess == number ? (idioma === "es" ? "¡Correcto!" : "Correct!") : (idioma === "es" ? `Incorrecto, era ${number}` : `Incorrect, it was ${number}`));
+      },
+    },
+    {
+      es: "Mostrar reloj",
+      en: "Show clock",
+      accion: () => {
+        const clock = document.createElement("div");
+        clock.style.position = "fixed";
+        clock.style.bottom = "20px";
+        clock.style.right = "20px";
+        clock.style.fontSize = "24px";
+        clock.style.fontWeight = "bold";
+        clock.style.color = "white";
+        clock.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        clock.style.padding = "10px";
+        clock.style.borderRadius = "5px";
+        clock.style.zIndex = "10000";
+
+        setInterval(() => {
+          const date = new Date();
+          clock.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        }, 1000);
+
+        document.body.appendChild(clock);
+      },
+    },
+    {
+      es: "Efecto de lluvia",
+      en: "Rain effect",
+      accion: () => {
+        const rainScript = document.createElement("script");
+        rainScript.src = "https://cdn.jsdelivr.net/npm/rainyday.js";
+        rainScript.onload = () => {
+          const rainyday = new RainyDay();
+          rainyday.size(5).effect("rain", document.body);
+        };
+        rainScript.onerror = () => alert("Error al cargar el efecto de lluvia");
+        document.body.appendChild(rainScript);
+      },
+    },
+    {
+      es: "Generar código QR",
+      en: "Generate QR code",
+      accion: () => {
+        const url = prompt(idioma === "es" ? "Introduce la URL para generar un código QR" : "Enter the URL to generate a QR code");
+        const qrScript = document.createElement("script");
+        qrScript.src = "https://cdn.jsdelivr.net/npm/qrcode";
+        qrScript.onload = () => {
+          const qrContainer = document.createElement("div");
+          new QRCode(qrContainer, url);
+          qrContainer.style.position = "fixed";
+          qrContainer.style.top = "50%";
+          qrContainer.style.left = "50%";
+          qrContainer.style.transform = "translate(-50%, -50%)";
+          qrContainer.style.zIndex = "10000";
+          document.body.appendChild(qrContainer);
+        };
+        qrScript.onerror = () => alert("Error al generar el código QR");
+        document.body.appendChild(qrScript);
+      },
+    },
+
+    // Más funciones...
   ];
 
   funciones.forEach((funcion) => {
@@ -473,16 +296,16 @@ const nuevasFunciones = [
   menu.appendChild(buttonContainer);
   document.body.appendChild(menu);
 
-  function changeLanguage(lang) {
-    idioma = lang;
-    document.getElementById("menuTitle").textContent = lang === "es" ? "TheWebChanger 3.0" : "TheWebChanger 3.0";
-    const buttons = buttonContainer.querySelectorAll("button");
-    funciones.forEach((funcion, index) => {
-      buttons[index].textContent = lang === "es" ? funcion.es : funcion.en;
+  // Cambiar el idioma
+  function changeLanguage(newLanguage) {
+    idioma = newLanguage;
+    document.getElementById("menuTitle").textContent = idioma === "es" ? "TheWebChanger 3.0" : "TheWebChanger 3.0";
+    const buttons = document.querySelectorAll(`#${menuId} button`);
+    buttons.forEach((button, index) => {
+      button.textContent = idioma === "es" ? funciones[index].es : funciones[index].en;
     });
   }
 })();
-
 
 
 
